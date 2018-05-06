@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
         var socketUsuario = usuarios.get(jsonData.para);
 
         if(socketUsuario){
-            socketUsuario.emit(nuevoTexto, {'texto':jsonData.texto});
+            socketUsuario.emit(nuevoTexto, {'texto':jsonData.texto,  'de': jsonData.de});
         }else{
             console.log(`Socket de  ${ jsonData.para } esta indefinido`);
         }
