@@ -11,6 +11,7 @@ const listarUsuarios = "listarUsuarios";
 
 var puerto = 3000;
 
+
 server.listen(puerto, () => {
     console.log(`Servidor escuchando en el puerto ${ puerto }`);
 });
@@ -21,8 +22,13 @@ app.use(express.static( path.join( __dirname, 'public' ) ));// armamos la ruta a
 // Mapa para guardar los usuarios conectados
 var usuarios = new Map();
 
+
 io.on('connection', (socket) => {
     console.log(`Nuevo dispositivo conectado ${ socket.id }`);
+
+    socket.on('data', (data) => {
+        console.log("datos recibidos\n", data.toString());
+    });
 
     socket.on(nuevoTexto, (data) => {
         console.log(`Nuevo texto: ${ data }`);
@@ -73,3 +79,6 @@ io.on('connection', (socket) => {
 
     
 });
+
+
+
